@@ -7,7 +7,7 @@ var path = require('path');
 var logger = require('morgan');
 
 const indexRouter = require("./routes/index");
-const moviesRouter = require("./routes/movies");
+const webhookManagerRouter = require("./routes/webhookManager");
 
 const app = express();
 
@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
 
 app.use('/', indexRouter);
-app.use("/get-movie-details", moviesRouter);
+app.use("/webhook", webhookManagerRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

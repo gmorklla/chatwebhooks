@@ -1,21 +1,8 @@
-const express = require("express");
-const router = express.Router();
 const http = require("http");
 const { WebhookClient } = require("dialogflow-fulfillment");
-const MOVIE_API_KEY = require("./apiKey");
+const MOVIE_API_KEY = require("../data/moviesApiKey");
 
-router.all("/*", (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Content-Type, responseType, Authorization"
-  );
-  res.header("Access-Control-Allow-Methods", "OPTIONS, POST, GET");
-  next();
-});
-
-router.post("/", (req, res) => {
+function response(req, res) {
   const {
     body: { queryResult: { parameters = {} } = {} },
   } = req;
@@ -30,7 +17,9 @@ router.post("/", (req, res) => {
       resAPI.on("data", (chunk) => {
         completeResponse += chunk;
       });
-      resAPI.on("end", () => endCallback(req, res, completeResponse, movieToSearch));
+      resAPI.on("end", () =>
+        endCallback(req, res, completeResponse, movieToSearch)
+      );
     },
     (error) => {
       return res.json({
@@ -40,7 +29,7 @@ router.post("/", (req, res) => {
       });
     }
   );
-});
+}
 
 function endCallback(req, res, completeResponse, movieToSearch) {
   const movie = JSON.parse(completeResponse);
@@ -58,4 +47,4 @@ function endCallback(req, res, completeResponse, movieToSearch) {
   agent.handleRequest(intentMap);
 }
 
-module.exports = router;
+module.exports = response;
