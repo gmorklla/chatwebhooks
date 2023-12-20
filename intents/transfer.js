@@ -8,7 +8,7 @@ function transferData(agent) {
     title: "card title",
     text: "card text",
     imageUrl:
-      "https://b00c-2806-2f0-9181-e855-69b4-4d68-e16-5638.ngrok-free.app/images/app-development.jpg",
+      "https://chat-webhooks-a79320e811b5.herokuapp.com/images/app-development.jpg",
     buttonText: "This is a button",
     buttonUrl: "https://assistant.google.com/"
   });
@@ -16,7 +16,7 @@ function transferData(agent) {
     title: "card title 2",
     text: "card text 2",
     imageUrl:
-      "https://b00c-2806-2f0-9181-e855-69b4-4d68-e16-5638.ngrok-free.app/images/app-development.jpg",
+      "https://chat-webhooks-a79320e811b5.herokuapp.com/images/app-development.jpg",
     buttonText: "This is a button 2",
     buttonUrl: "https://assistant.google.com/"
   });
